@@ -1,5 +1,5 @@
 {
-  "name": "@jfernandes-ui/tokens",
+  "name": "@jfernandes-ui/react",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
@@ -8,12 +8,13 @@
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts",
     "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
-     "lint": "eslint src/**/*.ts* --fix"
+    "lint": "eslint src/**/*.ts* --fix"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@jfernandes-ui/tokens": "*",
     "@jfernandes-ui/ts-config": "*",
     "@jfernandes-ui/eslint-config": "*",
     "tsup": "^6.2.3",
