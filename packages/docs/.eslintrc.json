@@ -1,0 +1,3 @@
+{ 
+  "extends": "@jfernandes-ui/eslint-config"
+}
