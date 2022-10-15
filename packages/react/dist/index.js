@@ -28,6 +28,7 @@ var src_exports = {};
 __export(src_exports, {
   Avatar: () => Avatar2,
   Box: () => Box,
+  Button: () => Button,
   Heading: () => Heading,
   Text: () => Text
 });
@@ -238,10 +239,84 @@ function Avatar2(props) {
     ]
   });
 }
+
+// src/components/Button.tsx
+var Button = styled("button", {
+  all: "unset",
+  borderRadius: "$sm",
+  fontSize: "$md",
+  fontWeight: "$medium",
+  fontFamily: "$default",
+  textAlign: "center",
+  minWidth: 120,
+  padding: "0 $4",
+  boxSizing: "border-box",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "$2",
+  cursor: "pointer",
+  transition: "all 0.2s",
+  svg: {
+    width: "$4",
+    height: "$4"
+  },
+  "&:disabled": {
+    cursor: "not-allowed"
+  },
+  variants: {
+    variant: {
+      primary: {
+        color: "$white",
+        background: "$green500",
+        "&:not(:disabled):hover": {
+          background: "$green300"
+        },
+        "&:disabled": {
+          backgroundColor: "$gray200"
+        }
+      },
+      secondary: {
+        color: "$green300",
+        border: "2px solid $green500",
+        "&:not(:disabled):hover": {
+          background: "$green500",
+          color: "$white"
+        },
+        "&:disabled": {
+          color: "$gray200",
+          borderColor: "$gray200"
+        }
+      },
+      tertiary: {
+        color: "$gray100",
+        "&:not(:disabled):hover": {
+          color: "$white"
+        },
+        "&:disabled": {
+          color: "$gray600"
+        }
+      }
+    },
+    size: {
+      sm: {
+        height: 38
+      },
+      md: {
+        height: 46
+      }
+    }
+  },
+  defaultVariants: {
+    variant: "primary",
+    size: "md"
+  }
+});
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   Avatar,
   Box,
+  Button,
   Heading,
   Text
 });
