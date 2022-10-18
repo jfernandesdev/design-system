@@ -6,14 +6,12 @@ export default {
   component: Box,
   args: {
     children: (
-      <>
-        <Text>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores
-          explicabo similique earum dolor ab molestias sint culpa at pariatur
-          voluptatibus, dicta accusantium eveniet quaerat ullam, vero nihil
-          expedita consectetur architecto.
-        </Text>
-      </>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores
+        explicabo similique earum dolor ab molestias sint culpa at pariatur
+        voluptatibus, dicta accusantium eveniet quaerat ullam, vero nihil
+        expedita consectetur architecto.
+      </Text>
     ),
   },
 } as Meta<BoxProps>
