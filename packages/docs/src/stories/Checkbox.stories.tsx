@@ -4,6 +4,11 @@ import { Box, Text, Checkbox, CheckboxProps } from '@jfernandes-ui/react'
 export default {
   title: 'Form/Checkbox',
   component: Checkbox,
+  argTypes: {
+    onClick: {
+      action: 'Click',
+    },
+  },
   decorators: [
     (Story) => {
       return (
