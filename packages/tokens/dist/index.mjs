@@ -13,7 +13,9 @@ var colors = {
   green300: "#00B37E",
   green500: "#00875F",
   green700: "#015F43",
-  green900: "#00291D"
+  green900: "#00291D",
+  danger: "#CC2937",
+  warning: "#EB8A1D"
 };
 
 // src/space.ts

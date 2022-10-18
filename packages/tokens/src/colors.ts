@@ -15,4 +15,7 @@ export const colors = {
   green500: '#00875F',
   green700: '#015F43',
   green900: '#00291D',
+
+  danger: '#CC2937',
+  warning: '#EB8A1D',
 }
