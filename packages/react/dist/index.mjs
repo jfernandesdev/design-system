@@ -13,7 +13,9 @@ var colors = {
   green300: "#00B37E",
   green500: "#00875F",
   green700: "#015F43",
-  green900: "#00291D"
+  green900: "#00291D",
+  danger: "#CC2937",
+  warning: "#EB8A1D"
 };
 var space = {
   1: "0.25rem",
@@ -488,6 +490,69 @@ function MultiStep({ size, currentStep = 1 }) {
   });
 }
 MultiStep.displayName = "MultiStep";
+
+// src/components/Tooltip/index.tsx
+import * as TooltipPrimitive2 from "@radix-ui/react-tooltip";
+
+// src/components/Tooltip/styles.ts
+import * as TooltipPrimitive from "@radix-ui/react-tooltip";
+var scaleIn = keyframes({
+  "0%": { opacity: 0, transform: "scale(0)" },
+  "100%": { opacity: 1, transform: "scale(1)" }
+});
+var StyledTooltipContent = styled(TooltipPrimitive.Content, {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "$3 $4",
+  gap: "$2",
+  width: "219px",
+  minHeight: "44px",
+  color: "$gray100",
+  backgroundColor: "$gray900",
+  borderRadius: "$xs",
+  transformOrigin: "var(--radix-tooltip-content-transform-origin)",
+  animation: `${scaleIn} 0.2s ease-out`
+});
+
+// src/components/Tooltip/TooltipArrow.tsx
+import { Arrow as ArrowPrimitive } from "@radix-ui/react-tooltip";
+import { jsx as jsx5 } from "react/jsx-runtime";
+function TooltipArrow({
+  width = "16px",
+  height = "8px",
+  ...props
+}) {
+  return /* @__PURE__ */ jsx5(ArrowPrimitive, {
+    width,
+    height,
+    style: { fill: "#121214" },
+    ...props
+  });
+}
+TooltipArrow.displayName = "TooltipArrow";
+
+// src/components/Tooltip/index.tsx
+import { jsx as jsx6 } from "react/jsx-runtime";
+function Tooltip({
+  children,
+  delayDuration = 300,
+  ...props
+}) {
+  return /* @__PURE__ */ jsx6(TooltipPrimitive2.Provider, {
+    delayDuration,
+    ...props,
+    children: /* @__PURE__ */ jsx6(TooltipPrimitive2.Root, {
+      children
+    })
+  });
+}
+Tooltip.displayName = "Tooltip";
+var TooltipTrigger = TooltipPrimitive2.Trigger;
+TooltipTrigger.displayName = "TooltipTrigger";
+var TooltipContent = StyledTooltipContent;
+TooltipContent.displayName = "TooltipContent";
 export {
   Avatar2 as Avatar,
   Box,
@@ -497,5 +562,9 @@ export {
   MultiStep,
   Text,
   TextArea,
-  TextInput
+  TextInput,
+  Tooltip,
+  TooltipArrow,
+  TooltipContent,
+  TooltipTrigger
 };
