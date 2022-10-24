@@ -17,11 +17,14 @@ export function Tooltip({
   ...props
 }: TooltipProps) {
   return (
-    <TooltipPrimitive.Provider delayDuration={delayDuration} {...props}>
-      <TooltipPrimitive.Root>{children}</TooltipPrimitive.Root>
+    <TooltipPrimitive.Provider>
+      <TooltipPrimitive.Root delayDuration={delayDuration} {...props}>
+        {children}
+      </TooltipPrimitive.Root>
     </TooltipPrimitive.Provider>
   )
 }
+
 Tooltip.displayName = 'Tooltip'
 
 export const TooltipTrigger = TooltipPrimitive.Trigger

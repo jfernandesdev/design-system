@@ -31,10 +31,18 @@ __export(src_exports, {
   Button: () => Button,
   Checkbox: () => Checkbox2,
   Heading: () => Heading,
+  Modal: () => Modal,
+  ModalContent: () => ModalContent,
+  ModalTrigger: () => ModalTrigger,
+  ModalWrapper: () => ModalWrapper,
   MultiStep: () => MultiStep,
   Text: () => Text,
   TextArea: () => TextArea,
   TextInput: () => TextInput,
+  Toast: () => Toast,
+  ToastDescription: () => ToastDescription,
+  ToastTitle: () => ToastTitle,
+  ToastWrapper: () => ToastWrapper,
   Tooltip: () => Tooltip,
   TooltipArrow: () => TooltipArrow,
   TooltipContent: () => TooltipContent,
@@ -552,7 +560,8 @@ var StyledTooltipContent = styled(TooltipPrimitive.Content, {
   padding: "$3 $4",
   gap: "$2",
   width: "219px",
-  minHeight: "44px",
+  fontFamily: "$default",
+  fontSize: "$sm",
   color: "$gray100",
   backgroundColor: "$gray900",
   borderRadius: "$xs",
@@ -585,9 +594,9 @@ function Tooltip({
   ...props
 }) {
   return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(TooltipPrimitive2.Provider, {
-    delayDuration,
-    ...props,
     children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(TooltipPrimitive2.Root, {
+      delayDuration,
+      ...props,
       children
     })
   });
@@ -597,6 +606,261 @@ var TooltipTrigger = TooltipPrimitive2.Trigger;
 TooltipTrigger.displayName = "TooltipTrigger";
 var TooltipContent = StyledTooltipContent;
 TooltipContent.displayName = "TooltipContent";
+
+// src/components/Toast/index.tsx
+var ToastPrimitive2 = __toESM(require("@radix-ui/react-toast"));
+
+// src/components/Toast/styles.ts
+var ToastPrimitive = __toESM(require("@radix-ui/react-toast"));
+var VIEWPORT_PADDING = 32;
+var hide = keyframes({
+  "0%": { opacity: 1 },
+  "100%": { opacity: 0 }
+});
+var slideIn2 = keyframes({
+  from: { transform: `translateX(calc(100% + ${VIEWPORT_PADDING})px)` },
+  to: { transform: "translateX(0)" }
+});
+var swipeOut = keyframes({
+  from: { transform: "translateX(var(--radix-toast-swipe-end-x))" },
+  to: { transform: `translateX(calc(100% + ${VIEWPORT_PADDING}px))` }
+});
+var ToastViewport = styled(ToastPrimitive.Viewport, {
+  position: "fixed",
+  bottom: 0,
+  right: 0,
+  display: "flex",
+  flexDirection: "column",
+  padding: VIEWPORT_PADDING,
+  maxWidth: "100vw",
+  margin: 0,
+  listStyle: "none",
+  outline: "none",
+  zIndex: "99999"
+});
+var ToastContainer = styled(ToastPrimitive.Root, {
+  background: "$gray800",
+  borderRadius: "$sm",
+  padding: "$3 $5",
+  boxSizing: "border-box",
+  border: "1px solid $gray600",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  gap: "4px",
+  width: "360px",
+  position: "relative",
+  "@media (prefers-reduced-motion: no-preference)": {
+    '&[data-state="open"]': {
+      animation: `${slideIn2} 150ms cubic-bezier(0.16, 1, 0.3, 1)`
+    },
+    '&[data-state="closed"]': {
+      animation: `${hide} 100ms ease-in`
+    },
+    '&[data-swipe="move"]': {
+      transform: "translateX(var(--radix-toast-swipe-move-x))"
+    },
+    '&[data-swipe="cancel"]': {
+      transform: "translateX(0)",
+      transition: "transform 200ms ease-out"
+    },
+    '&[data-swipe="end"]': {
+      animation: `${swipeOut} 100ms ease-out`
+    }
+  }
+});
+var StyledToastTitle = styled(Heading, {
+  color: "white",
+  wordWrap: "break-word",
+  width: "calc(100% - 32px)",
+  defaultVariants: {
+    size: "sm"
+  }
+});
+var StyledToastDescription = styled(Text, {
+  color: "$gray200",
+  wordWrap: "break-word",
+  width: "100%",
+  defaultVariants: {
+    size: "sm"
+  }
+});
+var ToastClose = styled(ToastPrimitive.Close, {
+  position: "absolute",
+  margin: 0,
+  padding: 0,
+  top: "$4",
+  right: "$4",
+  width: "$5",
+  height: "$5",
+  background: "transparent",
+  border: 0,
+  color: "$gray200",
+  cursor: "pointer",
+  "&:hover": {
+    color: "$white"
+  }
+});
+
+// src/components/Toast/index.tsx
+var import_phosphor_react3 = require("phosphor-react");
+var import_jsx_runtime7 = require("react/jsx-runtime");
+function Toast({ children }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(ToastPrimitive2.Provider, {
+    duration: 8e3,
+    children: [
+      children,
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(ToastViewport, {})
+    ]
+  });
+}
+var ToastWrapper = ({ children, ...props }) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(ToastContainer, {
+    ...props,
+    children: [
+      children,
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(ToastClose, {
+        children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(import_phosphor_react3.X, {
+          size: 20,
+          weight: "bold"
+        })
+      })
+    ]
+  });
+};
+var ToastTitle = StyledToastTitle;
+ToastTitle.displayName = "ToastTitle";
+var ToastDescription = StyledToastDescription;
+ToastDescription.displayName = "ToastDescription";
+
+// src/components/Modal/index.tsx
+var DialogPrimitive2 = __toESM(require("@radix-ui/react-dialog"));
+
+// src/components/Modal/styles.ts
+var DialogPrimitive = __toESM(require("@radix-ui/react-dialog"));
+var overlayShow = keyframes({
+  "0%": { opacity: 0 },
+  "100%": { opacity: 1 }
+});
+var overlayHide = keyframes({
+  "0%": { opacity: 1 },
+  "100%": { opacity: 0 }
+});
+var contentShow = keyframes({
+  "0%": {
+    opacity: 0,
+    transform: "translate3d(-50%, calc(-50% + 20px), 0) scale(.96)"
+  },
+  "100%": {
+    opacity: 1,
+    transform: "translate3d(-50%, -50%, 0) scale(1)"
+  }
+});
+var contentHide = keyframes({
+  "0%": {
+    opacity: 1,
+    transform: "translate3d(-50%, -50%, 0) scale(1)"
+  },
+  "100%": {
+    opacity: 0,
+    transform: "translate3d(-50%, calc(-50% + 20px), 0) scale(.96)"
+  }
+});
+var StyledModalOverlay = styled(DialogPrimitive.Overlay, {
+  backgroundColor: "rgba(0,0,0,0.9)",
+  position: "fixed",
+  inset: 0,
+  zIndex: "9995",
+  "&[data-state=open]": {
+    animation: `${overlayShow} 0.2s ease-in`
+  },
+  "&[data-state=closed]": {
+    animation: `${overlayHide} 0.3s ease-in`
+  }
+});
+var StyledModalWrapper = styled(DialogPrimitive.Content, {
+  position: "fixed",
+  top: "50%",
+  left: "50%",
+  backfaceVisibility: "hidden",
+  transform: "translate3d(-50%, -50%, 0)",
+  width: "90vw",
+  maxWidth: "$$maxWidth",
+  background: "$gray800",
+  maxHeight: "90vh",
+  overflowY: "auto",
+  zIndex: "9999",
+  borderRadius: "$sm",
+  "&:focus": {
+    outline: "none"
+  },
+  "&[data-state=open]": {
+    animation: `${contentShow} 0.3s ease-out`
+  },
+  "&[data-state=closed]": {
+    animation: `${contentHide} 0.2s ease-out`
+  },
+  boxShadow: `
+    0px 1.8px 2.6px rgba(0,0,0,0.038),
+    0px 5px 7.1px rgba(0,0,0,0.057),
+    0px 12.1px 17.2px rgba(0,0,0,0.077),
+    0px 40px 57px rgba(0,0,0,0.012),
+  `,
+  "&::-webkit-scrollbar": {
+    width: "3px",
+    height: 0
+  },
+  "&::-webkit-scrollbar-track": {
+    background: "transparent"
+  },
+  "&::-webkit-scrollbar-thumb": {
+    backgroundColor: "$gray500",
+    borderRadius: "10px"
+  }
+});
+var StyledModalContent = styled("div", {
+  padding: "$8",
+  "@media(max-width: 768px)": {
+    padding: "$5"
+  }
+});
+
+// src/components/Modal/index.tsx
+var import_jsx_runtime8 = require("react/jsx-runtime");
+function Modal({ children, overlay = true, ...props }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(DialogPrimitive2.Root, {
+    ...props,
+    children: [
+      overlay && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(StyledModalOverlay, {}),
+      children
+    ]
+  });
+}
+var ModalWrapper = ({
+  children,
+  width = 700,
+  maintainDimensions = false,
+  ...props
+}) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(StyledModalWrapper, {
+    ...props,
+    css: {
+      $$maxWidth: `${width}px`,
+      ...!maintainDimensions && {
+        [`@media(max-width: ${width}px)`]: {
+          width: "100vw",
+          height: "100vh",
+          borderRadius: 0
+        }
+      }
+    },
+    children
+  });
+};
+var ModalTrigger = DialogPrimitive2.Trigger;
+ModalTrigger.displayName = "ModalTrigger";
+var ModalContent = StyledModalContent;
+ModalContent.displayName = "ModalContent";
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   Avatar,
@@ -604,10 +868,18 @@ TooltipContent.displayName = "TooltipContent";
   Button,
   Checkbox,
   Heading,
+  Modal,
+  ModalContent,
+  ModalTrigger,
+  ModalWrapper,
   MultiStep,
   Text,
   TextArea,
   TextInput,
+  Toast,
+  ToastDescription,
+  ToastTitle,
+  ToastWrapper,
   Tooltip,
   TooltipArrow,
   TooltipContent,
