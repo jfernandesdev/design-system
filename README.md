@@ -1,4 +1,4 @@
-# Design System - @jfernandes-ui <img src='https://jfernandes.dev.br/logo-jfernandesdev.svg' width='90px' />
+# Design System - @jfernandes-ui <img src='https://jfernandes.dev.br/logo-jfernandesdev.svg' width='40px' />
 
 ## Description:
 
