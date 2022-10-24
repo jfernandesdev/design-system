@@ -1,0 +1,2 @@
+import{A as t}from"./index.2ac11360.js";import"./index.5dbe670b.js";import"./iframe.56120ae7.js";import"./index.288ee704.js";import"./jsx-runtime.3299cd42.js";const i={title:"Data display/Avatar",component:t,args:{src:"https://github.com/jfernandesdev.png",alt:"Jeferson Fernandes"},argTypes:{src:{control:{type:"text"}}}},n={},p={args:{src:void 0}},c=["Primary","WithFallback"];export{n as Primary,p as WithFallback,c as __namedExportsOrder,i as default};
+//# sourceMappingURL=Avatar.stories.64db3610.js.map

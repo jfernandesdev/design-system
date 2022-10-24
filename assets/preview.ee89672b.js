@@ -1,0 +1,2 @@
+import{t as e}from"./index.6b12dc26.js";import"./iframe.56120ae7.js";import"./es.map.constructor.4bb20a04.js";import"./es.number.to-fixed.dbe3262c.js";import"./index.5dbe670b.js";const s={actions:{argTypesRegex:"^on[A-Z].*"},layout:"centered",backgrounds:{default:"dark",values:[{name:"dark",value:"#202024aa"},{name:"light",value:"#ffffff"}]},docs:{theme:e.dark}};export{s as parameters};
+//# sourceMappingURL=preview.ee89672b.js.map
