@@ -46,7 +46,7 @@ $ npm i @jfernandes-ui/react
 
 - Clone the project and install the dependencies:
 ```sh
-$ npm i @jfernandes-ui/react
+$ git clone git@github.com:jfernandesdev/design-system.git && cd design-system && npm i
 ```
 
 - Run the project developer mode:
